@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <script   src="https://code.jquery.com/jquery-3.1.0.min.js" integrity="sha256-cCueBR6CsyA4/9szpPfrX3s49M9vUU5BgtiJj06wt/s=" crossorigin="anonymous"></script>
+    <title>AndroidJSBridgeStarter</title>
+  </head>
+  <body>
+     <button id="button1" type="button" class="btn">Get Name</button>
+     <button id="button2" type="button" class="btn">Make Toast</button>
+     <button id="camera" type="button" class="btn">Camera</button>
+     <div id="output"></div>
+
+  <script>
+    $(document).ready(function(){
+
+
+        $('#button1').click(function(){
+
+            print('button1 clicked');
+            interfaceGetName();
+
+        });
+
+
+        $('#button2').click(function(){
+
+            print('button2 clicked');
+            interface_onJavascriptButtonPushed('js');
+
+        });
+
+        $('#camera').click(function(){
+
+            print('camera clicked');
+            interface_openCamera();
+
+        });
+
+        function print(text) {
+
+           $('#output').append(text);
+        }
+
+        function interface_GetName() {
+
+            if(window.AndroidInterface) {
+               print("Bridge Found");
+               var name = window.AndroidInterface.getName();
+               print(name);
+
+            }
+            else {
+              print("Bridge not found");
+            }
+        }
+
+        function interface_onJavascriptButtonPushed(text) {
+            if(window.AndroidInterface) {
+               print("Bridge Found");
+               var name = window.AndroidInterface.onJavascriptButtonPushed(text);
+               print(name);
+
+            }
+            else {
+              print("Bridge not found");
+            }
+
+        }
+
+        function interface_openCamera() {
+            if(window.AndroidInterface) {
+               print("Bridge Found");
+               var name = window.AndroidInterface.openCamera();
+
+            }
+            else {
+              print("Bridge not found");
+            }
+
+        }
+
+    });
+  </script>
+  </body>
+</html>
